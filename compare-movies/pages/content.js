@@ -151,21 +151,21 @@ const main = () => {
     case 'bar':
       section.innerHTML = `
         <h2 id="bar-heading">Domestic Box Office</h2>
-        <canvas id="bar-chart"></canvas>
+        <canvas id="bar-chart" aria-label="bar-chart"></canvas>
         `;
       makeChart(getMovies(), 'bar');
       break;
     case 'donut':
       section.innerHTML = `
         <h2 id="donut-heading">Genres and Total Gross</h2>
-        <canvas id="donut-chart"></canvas>
+        <canvas id="donut-chart" aria-label="donut-chart"></canvas>
         `;
       makeChart(getMovies(), 'donut');
       break;
     case 'scatter':
       section.innerHTML = `
         <h2 id="scatter-heading">Critic vs Audience Score</h2>
-        <canvas id="scatter-chart"></canvas>
+        <canvas id="scatter-chart" aria-label="scatter-chart"></canvas>
         `;
       makeChart(getMovies(), 'scatter');
       break;

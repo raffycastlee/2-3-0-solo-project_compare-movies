@@ -1,7 +1,8 @@
 import defaultMovies from '../../movie-data.json';
 import {
   getMovies,
-  setMovies
+  setMovies,
+  addMovies
 } from './crud.js';
 
 
@@ -21,8 +22,8 @@ const handleSubmit = (event) => {
 }
 
 const handleReset = () => {
+  console.log('resetting...');
   setMovies(defaultMovies);
-  currMovies = defaultMovies;  
   displayMovies();
 }
 
@@ -33,7 +34,7 @@ const displayMovies = () => {
   getMovies().forEach(movie => {
     const li = document.createElement('li');
     // title
-    const h2 = document.createElement('h2');
+    const h2 = document.createElement('h3');
     h2.classList.add('movie-title');
     h2.textContent = movie.title;
     li.append(h2);
