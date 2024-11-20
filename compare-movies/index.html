@@ -3,50 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Compare Movies</title>
   </head>
   <body>
-    <main id="app">
-      <section id="form-and-ul" aria-label="Movie Forms and List">
-        <div id="form-container" aria-label="Form Container">
-          <form id="add-movie-form" aria-label="Add Movie Form">
-            <h2 id="form-header">Add Your Movie</h2>
-            <div class="form-item" aria-label="Movie Title Input Box">
-              <label for="movie-title">Movie Title:</label>
-              <input id="movie-title" type="text" name="movieTitle" aria-label="Movie Title Input">
-              <label for="critic-score">Critic Score:</label>
-              <input id="critic-score" type="number" name="criticScore" aria-label="Critic Score Input">
-              <label for="audience-score">Audience Score:</label>
-              <input id="audience-score" type="number" name="audienceScore" aria-label="Audience Score Input">
-              <label for="domestic-gross-sales">Domestic Gross Sales:</label>
-              <input id="domestic-gross-sales" type="number" name="domesticGrossSales" aria-label="Domestic Gross Sales">
-              <label for="genre">Genre:</label>
-              <select id="genres" name="genres"
-              aria-label="Genre Input">
-                <option value="">Choose a genre</option>
-                <option value="comedy">Comedy</option>
-                <option value="action">Action</option>
-                <option value="adventure">Adventure</option>
-                <option value="drama">Drama</option>
-                <option value="concert">Concert</option>
-                <option value="horror">Horror</option>
-              </select>
-              <button id="add-movie" type="submit">Add Movie</button>
-            </div>
-          </form>
-        </div>
-        <div id="movies-container" aria-label="Movies Container">
+    <header id="header">
+      <h1>2023's Top Domestic Movies</h1>
+      <ul id="nav-list">
+        <li><a href="./index.html">Add/List</a></li>
+        <li><a href="./pages/bar.html">Bar</a></li>
+        <li><a href="./pages/donut.html">Donut</a></li>
+        <li><a href="./pages/scatter.html">Scatter</a></li>
+      </ul>
+    </header>
+    <main id="index">
+      <div id="left-container" aria-label="Movie Forms and List Left Container">
+        <form id="add-movie-form" aria-label="Add Movie Form">
+          <h2 id="form-header">Add Your Movie</h2>
+          <div class="form-item" aria-label="Movie Title Input Box">
+            <label for="movie-title">Movie Title:</label>
+            <input id="movie-title" type="text" name="movieTitle" aria-label="Movie Title Input">
+          </div>
+          <div class="form-item" aria-label="Critic Score Input Box">
+            <label for="critic-score">Critic Score:</label>
+            <input id="critic-score" type="number" name="criticScore" aria-label="Critic Score Input">
+          </div>
+          <div class="form-item" aria-label="Audience Score Input Box">
+            <label for="audience-score">Audience Score:</label>
+            <input id="audience-score" type="number" name="audienceScore" aria-label="Audience Score Input">
+          </div>
+          <div class="form-item" aria-label="Domestic Gross Sales Input Box">
+            <label for="domestic-gross-sales">Domestic Gross Sales:</label>
+            <input id="domest/cic-gross-sales" type="number" name="domesticGrossSales" aria-label="Domestic Gross Sales">
+          </div>
+          <div class="form-item" aria-label="Genre Input Box">
+            <label for="genre">Genre:</label>
+            <select id="genres" name="genres"
+            aria-label="Genre Input">
+              <option value="">Choose a genre</option>
+              <option value="comedy">Comedy</option>
+              <option value="action">Action</option>
+              <option value="adventure">Adventure</option>
+              <option value="drama">Drama</option>
+              <option value="concert">Concert</option>
+              <option value="horror">Horror</option>
+            </select>
+          </div>
+            <button id="add-movie" type="submit">Add Movie</button>
+        </form>
+      </div>
+      <div id="right-container" aria-label="Movie Forms and List Right Container">
+        <div id="movies-container" aria-label="Movies List Container">
           <ul id="movies-list">
             <!-- add li here through js -->
           </ul>
-          <button id="default-movies">Go Back To Default Movies</button>
         </div>
-      </section>
-      <section id="chart-display">
-        <!-- charts here! -->
-      </section>
+        <button id="default-movies">Go Back To Default Movies</button>
+      </div>
     </main>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
