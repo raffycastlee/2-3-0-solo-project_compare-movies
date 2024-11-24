@@ -11,56 +11,14 @@
     <header id="header">
       <h1>2023's Top Domestic Movies</h1>
       <ul id="nav-list">
-        <li><a href="./index.html">Add/List</a></li>
-        <li><a href="./pages/bar.html">Bar</a></li>
-        <li><a href="./pages/donut.html">Donut</a></li>
-        <li><a href="./pages/scatter.html">Scatter</a></li>
+        <li id="nav-main" class="current">Add/List</li>
+        <li id="nav-bar">Bar</li>
+        <li id="nav-donut">Donut</li>
+        <li id="nav-scatter">Scatter</li>
       </ul>
     </header>
-    <main id="index">
-      <div id="left-container" aria-label="Movie Forms and List Left Container">
-        <form id="add-movie-form" aria-label="Add Movie Form">
-          <h2 id="form-header">Add Your Movie</h2>
-          <div class="form-item" aria-label="Movie Title Input Box">
-            <label for="movie-title">Movie Title:</label>
-            <input id="movie-title" type="text" name="movieTitle" aria-label="Movie Title Input" required>
-          </div>
-          <div class="form-item" aria-label="Critic Score Input Box">
-            <label for="critic-score">Critic Score:</label>
-            <input id="critic-score" type="number" name="criticScore" aria-label="Critic Score Input" required>
-          </div>
-          <div class="form-item" aria-label="Audience Score Input Box">
-            <label for="audience-score">Audience Score:</label>
-            <input id="audience-score" type="number" name="audienceScore" aria-label="Audience Score Input" required>
-          </div>
-          <div class="form-item" aria-label="Domestic Gross Sales Input Box">
-            <label for="domestic-gross-sales">Domestic Gross Sales:</label>
-            <input id="domest/cic-gross-sales" type="number" name="domesticGrossSales" aria-label="Domestic Gross Sales" required>
-          </div>
-          <div class="form-item" aria-label="Genre Input Box">
-            <label for="genre">Genre:</label>
-            <select id="genres" name="genres"
-            aria-label="Genre Input" required>
-              <option value="">Choose a genre</option>
-              <option value="comedy">Comedy</option>
-              <option value="action">Action</option>
-              <option value="adventure">Adventure</option>
-              <option value="drama">Drama</option>
-              <option value="concert">Concert</option>
-              <option value="horror">Horror</option>
-            </select>
-          </div>
-            <button id="add-movie" type="submit">Add Movie</button>
-        </form>
-      </div>
-      <div id="right-container" aria-label="Movie Forms and List Right Container">
-        <div id="movies-container" aria-label="Movies List Container">
-          <ul id="movies-list">
-            <!-- add li here through js -->
-          </ul>
-        </div>
-        <button id="default-movies">Go Back To Default Movies</button>
-      </div>
+    <main>
+      <!-- el o el -->
     </main>
     <script type="module" src="./main.js"></script>
   </body>

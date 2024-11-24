@@ -5,26 +5,21 @@ import {
 import {
   handleReset,
   handleSubmit,
-  displayMovies
+  displayMain,
+  initNav,
 } from './src/events.js';
 
 const main = () => {
   initMoviesIfEmpty();
 
-  // form listener
-  document
-    // .querySelector('form')
-    .addEventListener('submit', handleSubmit);
-  // reset listener
-  document
-    .querySelector('button#default-movies')
-    .addEventListener('click', handleReset);
+  // nav listeners
+  initNav();
 
-  console.log('here without any problems!')
-  console.log('logging movies', getMovies());
+  // console.log('here without any problems!')
+  // console.log('logging movies', getMovies());
 
-  console.log('displaying movies now:');
-  displayMovies();
+  // console.log('displaying movies now:');
+  displayMain();
 
   // makes bar chart
   // makeChart(getMovies(), "bar");

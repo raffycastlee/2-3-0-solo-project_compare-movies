@@ -1,3 +1,4 @@
+import defaultMovies from '../../movie-data.json';
 import {
   setLocalStorageKey,
   getLocalStorage

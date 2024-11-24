@@ -5,7 +5,7 @@ const setLocalStorageKey = (key, value) => {
 const getLocalStorage = (key) => {
   try {
     const fetch = JSON.parse(localStorage.getItem(key))
-    return (fetch.length === 0) ? null : fetch;
+    return (fetch === null) ? null : fetch;
   } catch (err) {
     console.error('JSON parse error!', err);
     return null;
