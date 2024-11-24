@@ -1,10 +1,7 @@
 import {
   initMoviesIfEmpty,
-  getMovies
 } from './src/crud.js';
 import {
-  handleReset,
-  handleSubmit,
   displayMain,
   initNav,
 } from './src/dom-helpers.js';
