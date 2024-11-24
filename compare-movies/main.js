@@ -7,7 +7,7 @@ import {
   handleSubmit,
   displayMain,
   initNav,
-} from './src/events.js';
+} from './src/dom-helpers.js';
 
 const main = () => {
   initMoviesIfEmpty();
