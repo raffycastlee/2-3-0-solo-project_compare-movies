@@ -1,8 +1,8 @@
-import { initMoviesIfEmpty } from './src/crud.js';
+import { initMoviesIfEmpty } from './crud.js';
 import {
   displayMain,
   initNav,
-} from './src/dom-helpers.js';
+} from './dom-helpers.js';
 
 const main = () => {
   initMoviesIfEmpty();
