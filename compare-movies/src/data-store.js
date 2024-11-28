@@ -2,7 +2,7 @@ const setLocalStorageKey = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-const getLocalStorage = (key) => {
+const getLocalStorageKey = (key) => {
   try {
     const fetch = JSON.parse(localStorage.getItem(key))
     return (fetch === null) ? null : fetch;
@@ -14,5 +14,5 @@ const getLocalStorage = (key) => {
 
 export {
   setLocalStorageKey,
-  getLocalStorage
+  getLocalStorageKey
 }

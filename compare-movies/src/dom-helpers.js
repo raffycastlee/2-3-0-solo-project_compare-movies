@@ -1,4 +1,4 @@
-import defaultMovies from '../../movie-data.json';
+import defaultMovies from '../public/movie-data.json';
 import {
   getMovies,
   setMovies,
@@ -29,6 +29,7 @@ const handleNav = (e) => {
   }
 }
 
+// only bar chart doesn't have custom tooltips :(
 const displayBar = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
@@ -75,22 +76,20 @@ const displayDonut = () => {
     <div>
   `;
   const movies = getMovies();
-  
-  // TODO: sort the genres alphabetically
   let genreCounts = {};
   for (const movie of movies) {
     if (genreCounts[movie.genre]) {
-      genreCounts[movie.genre] += 1;
+      genreCounts[movie.genre][0] += 1;
+      genreCounts[movie.genre][1] += movie.domestic;
     } else {
-      genreCounts[movie.genre] = 1;
+      genreCounts[movie.genre] = [1, movie.domestic];
     }
   };
-
-  // just to sort the genres alphabetically
+  // sorting keys alphabetically
   genreCounts = Object.entries(genreCounts).sort((a,b) => a[0] > b[0]);
   genreCounts = Object.fromEntries(genreCounts);
-
-  // donut chart
+  const moneyTotal = Object.values(genreCounts).reduce((total, curr) => total + curr[1], 0)
+  console.log(genreCounts);
   new Chart (
     document.querySelector('#donut-chart'),
     {
@@ -98,8 +97,8 @@ const displayDonut = () => {
       data: {
         labels: Object.keys(genreCounts),
         datasets: [{
-          label: 'Genres and total gross',
-          data: Object.values(genreCounts),
+          label: 'Movie Count',
+          data: Object.values(genreCounts).map(item => item[0]),
           backgroundColor: [
             '#65fa5b',
             '#368d9c',
@@ -110,6 +109,28 @@ const displayDonut = () => {
           ],
           hoverOffset: 4
         }]
+      },
+      options: {
+        plugins: {
+          tooltip: {
+            callbacks: {
+              afterLabel: function(context) {
+                // Domestic Total: $X
+                let money = genreCounts[context.label][1];
+                money = money.toLocaleString("en-US",
+                  { 
+                    style: "currency", currency: "USD"
+                  });
+                money = money.slice(0, money.length-3);
+                // X% of all sales
+                const percent = (genreCounts[context.label][1] / moneyTotal * 100).toFixed();
+
+                return ['Domestic Total: ' + money,
+                         percent + '% of all sales'];
+              }
+            }
+          }
+        }
       }
     }
   )
@@ -162,10 +183,40 @@ const displayScatter = () => {
         ]
       },
       options: {
-        tooltips: {
-          callbacks: {
-            label: function(tooltipItem, data) {
-              return data.labels[tooltipItem.index];
+        interaction: {
+          axis: 'xy',
+          mode: 'nearest',
+          intersect: false
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                // Audience Score: X
+                const mainLabel = context.dataset.label + ': ' + context.parsed.x;
+                // Domestic Total: $X
+                let money = context.raw.y.toLocaleString("en-US",
+                  { 
+                    style: "currency", currency: "USD"
+                  });
+                money = 'Domestic Total: ' + money.slice(0, money.length-3);
+                // +/-X points from [counterpart] Score
+                let counterpart, counterlabel;
+                if (context.datasetIndex === 0) { // if audiencescore
+                  counterpart = criticPoints[context.dataIndex].x;
+                  counterlabel = 'Critic Score';
+                } else { // if criticscore
+                  counterpart = audiencePoints[context.dataIndex].x;
+                  counterlabel = 'Audience Score';
+                }
+                let difference = context.raw.x - counterpart;
+                if (difference > 0) difference = '+' + difference;
+                difference = difference + ' points from ' + counterlabel;
+
+                return [mainLabel,
+                        money,
+                        difference];
+              }
             }
           }
         },
@@ -209,7 +260,6 @@ const handleSubmit = (event) => {
 }
 
 const handleReset = () => {
-  // console.log('resetting...');
   setMovies(defaultMovies);
   displayMain();
 }

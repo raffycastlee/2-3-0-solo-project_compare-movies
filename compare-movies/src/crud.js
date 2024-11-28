@@ -1,14 +1,11 @@
-import defaultMovies from '../../movie-data.json';
+import defaultMovies from '../public/movie-data.json';
 import {
   setLocalStorageKey,
-  getLocalStorage
+  getLocalStorageKey
 } from './data-store.js';
 
-// state var
-let currMovies;
-
 const getMovies = () => {
-  return getLocalStorage('data');
+  return getLocalStorageKey('data');
 }
 
 const setMovies = (movies) => {
@@ -16,9 +13,7 @@ const setMovies = (movies) => {
 }
 
 const initMoviesIfEmpty = () => {
-  // on refresh, check if local storage is empty. if it is, replace it
-  // with default values from movies.json
-  currMovies = getMovies();
+  const currMovies = getMovies();
   if (currMovies === null) {
     setMovies(defaultMovies);
     currMovies =  defaultMovies;
@@ -26,13 +21,13 @@ const initMoviesIfEmpty = () => {
 }
 
 const addMovies = (movies) => {
-  currMovies = getMovies();
+  const currMovies = getMovies();
   currMovies.unshift(movies);
   setMovies(currMovies);
 }
 
 const removeMovies = (moviesUUID) => {
-  currMovies = getMovies();
+  const currMovies = getMovies();
   const removeIndex = currMovies.findIndex(movies => movies.uuid === moviesUUID);
   currMovies.splice(removeIndex, 1);
   setMovies(currMovies);
